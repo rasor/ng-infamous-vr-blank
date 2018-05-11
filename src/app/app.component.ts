@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 //import infamous from 'infamous'
 declare var infamous: any; 
 
@@ -7,18 +7,23 @@ declare var infamous: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
+  @ViewChild("inode") inode: ElementRef;
   title = 'NgInfamousVrBlank';
 
   constructor() {
     infamous.html.useDefaultNames();
   }
 
-  // sample from https://infamous.io/docs/workflows.html
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    // sample from https://infamous.io/docs/workflows.html
     const {Motor} = infamous.core
-    var node: any;
+    let node: any;
     node = document.querySelector('i-node')
+    //node = this.inode.nativeElement;
     node.rotation = ( x, y, z ) => [ x, ++y, z ] //   
   }
 }
