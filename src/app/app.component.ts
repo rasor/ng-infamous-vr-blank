@@ -22,8 +22,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     // sample from https://infamous.io/docs/workflows.html
     const {Motor} = infamous.core
     let node: any;
-    node = document.querySelector('i-node')
-    //node = this.inode.nativeElement;
+    //node = document.querySelector('i-node')
+    node = this.inode.nativeElement;
+    console.log('Hello ' + node.tagName);
     node.rotation = ( x, y, z ) => [ x, ++y, z ] //   
   }
 }
